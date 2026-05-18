@@ -29,8 +29,48 @@ double divide(double a, double b)
 	return a / b;
 }
 
-int main(void) {
-    
-    
-    return 0;
+int main(void)
+{
+	double a,b,result;
+	char operator;
+	
+	printf("Please enter a number: ");
+	scanf("%lf",&a);
+	
+	printf("Please enter a number: ");
+	scanf("%lf",&b);
+	
+	printf("Please enter an operator: ");
+	scanf(" %c",&operator);
+
+	switch(operator)
+	{
+		case '+':
+			result = add(a,b);
+			printf("Your result is: %.2lf\n",result);
+			break;
+		
+		case '-':
+                        result = subtract(a,b);
+                        printf("Your result is: %.2lf\n",result);
+                        break;
+
+		case '*':
+                        result = multiply(a,b);
+                        printf("Your result is: %.2lf\n",result);
+                        break;
+		
+		case '/':
+                        result = divide(a,b);
+                        printf("Your result is: %.2lf\n",result);
+                        break;
+
+		default:
+			printf("Error: invalid operator\n");
+			break;
+	}
+
+
+
+	return 0;
 }
