@@ -1,75 +1,65 @@
 #include <stdio.h>
-
-double add(double a, double b)
-{
-	/* This function takes two numbers a, b and add them */
-	return a + b;
-}
-
-double subtract(double a, double b)
-{
-	/* This function takes two numbers a, b and subtract them */
-	return a - b;
-}
-
-double multiply(double a, double b)
-{
-	/* This funtion takes two numbers a, b and multiply them */
-	return a * b;
-}
-
-double divide(double a, double b)
-{
-	/* This function takes two numbers a, b and divide them */
-	if (b==0)
-	{
-		printf("Impossible to divide by zero");
-		return 0.0;
-	}
-	return a / b;
-}
+#include "math_functions.h"
 
 int main(void)
 {
 	double a,b,result;
 	char operator;
-	
-	printf("Please enter a number: ");
-	scanf("%lf",&a);
-	
-	printf("Please enter a number: ");
-	scanf("%lf",&b);
-	
-	printf("Please enter an operator: ");
-	scanf(" %c",&operator);
+	char choice = 'y';
 
-	switch(operator)
+	while(choice == 'y' || choice == 'Y')
 	{
-		case '+':
-			result = add(a,b);
-			printf("Your result is: %.2lf\n",result);
-			break;
-		
-		case '-':
-                        result = subtract(a,b);
-                        printf("Your result is: %.2lf\n",result);
-                        break;
+		printf("\e[1;1H\e[2J"); /*clear the screen*/
 
-		case '*':
-                        result = multiply(a,b);
-                        printf("Your result is: %.2lf\n",result);
-                        break;
-		
-		case '/':
-                        result = divide(a,b);
-                        printf("Your result is: %.2lf\n",result);
-                        break;
+		printf("Please enter a number: ");
+		while (scanf("%lf", &a) != 1) 
+		{
+    			while (getchar() != '\n');
+    			printf("\033[0;31mInvalid input. Please enter a real number:\033[0m\n");
+		}
+	
+		printf("Please enter a number: ");
+		while (scanf("%lf", &b) != 1)
+                {
+                        while (getchar() != '\n');
+                        printf("\033[0;31mInvalid input. Please enter a real number:\033[0m\n");
+                }
+	
+		printf("Please enter an operator: ");
+		scanf(" %c",&operator);
 
-		default:
-			printf("Error: invalid operator\n");
-			break;
+		switch(operator)
+		{
+			case '+':
+				result = add(a,b);
+				printf("Your result is: \033[0;32m%.2lf\033[0m\n", result); /*Green for result*/
+				break;
+		
+			case '-':
+                        	result = subtract(a,b);
+                        	printf("Your result is: \033[0;32m%.2lf\033[0m\n", result); /*Green for result*/
+                        	break;
+
+			case '*':
+                        	result = multiply(a,b);
+                        	printf("Your result is: \033[0;32m%.2lf\033[0m\n", result); /*Green for result*/
+                        	break;
+		
+			case '/':
+                        	result = divide(a,b);
+                        	printf("Your result is: \033[0;32m%.2lf\033[0m\n", result); /*Green for result*/
+				break;
+
+			default:
+				printf("\033[0;31mError: invalid operator\033[0m\n"); /*Red for error*/
+				break;
+		}
+
+		printf("\nDo you want to perform another calculation? (Y/N): ");
+		scanf(" %c",&choice);
 	}
 
+	printf("Goodbye!\n");
 
 
 	return 0;

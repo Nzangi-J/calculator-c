@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = calculatrice
 
-SRC = calculator.c
+SRC = calculator.c math_functions.c
 
 OBJ =	$(SRC:.c=.o)
 
